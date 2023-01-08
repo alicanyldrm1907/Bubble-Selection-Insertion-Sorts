@@ -1,52 +1,69 @@
-# Prerequisites
-*.d
+#include <stdio.h>
+#include <string.h>
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+void bubbleSort (int *arr,int size) {
+	int i,j;
+	int temp;
+	for (i=0;i<size;i++) {
+		for (j=1;j<size;j++) {
+			if (arr[j-1]>arr[j]) {
+				temp=arr[j];
+				arr[j]=arr[j-1];
+				arr[j-1]=temp;
+			}
+		}
+	}
+	
+	for (i=0;i<size;i++) {
+		printf("%d ",arr[i]);
+	}
+}
 
-# Linker output
-*.ilk
-*.map
-*.exp
+void selectionSort (int *arr,int size) {
+	int i,j,min;
+	int temp;
+	for (i=0;i<size-1;i++) {
+		min=arr[i];
+		for (j=i+1;j<size;j++) {
+			if (min>arr[j]) {
+				temp=arr[j];
+				arr[j]=min;
+				min=temp;
+			}
+		}
+		arr[i]=min;
+	}
+	
+	for (i=0;i<size;i++) {
+		printf("%d ",arr[i]);
+	}
+}
 
-# Precompiled Headers
-*.gch
-*.pch
+void insertionSort (int *arr,int size) {
+	int i,j,temp;
+	
+	for (i=0;i<size;i++) {
+		for (j=i;j<size;j++) {
+			if (arr[j]<arr[i]) {
+				temp=arr[i];
+				arr[i]=arr[j];
+				arr[j]=temp;
+			}
+		}
+	}
+	for (i=0;i<size;i++) {
+		printf("%d ",arr[i]);
+	}
+}
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+int main () {
+	int a[18]={13423,1241,-2352,1,-235,-1,23,-12,-234,0,12,345,-123,3245,12,3,1,5};
+	bubbleSort(a,18);
+	printf("\n");
+	int x[7]={-123,4,3,8,345,7465,102};
+	selectionSort(x,7);
+	printf("\n");
+	int b[20]={12,123,234,-134,-14,-1,-9999,9999,1245,-1346,-2345,-123,-234,-2,-5,-7,-8,45,34,98};
+	insertionSort (b,20);
+}
+// 6 5 4 3 1 2 7 8 9 3 4 5
